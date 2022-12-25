@@ -1,0 +1,80 @@
+Problem -> Missing number in matrix .
+code:
+class Solution
+{
+    public long  MissingNo(int[][] matrix)
+    {
+        // code here
+        TreeSet<Long> zero = new TreeSet<>() ;
+        TreeSet<Long>nonZero = new TreeSet<>() ;
+        int row = matrix.length ;int col = matrix[0].length;
+       /// For Row
+        for(int i = 0 ;i<row;i++)
+        {
+            long sum =0 ;
+            boolean flag = true ;
+            for(int j = 0 ;j<col;j++)
+            {
+                sum+=matrix[i][j] ;
+                if(matrix[i][j]==0)
+                flag = false ;
+            }
+            if(flag)
+            nonZero.add(sum )  ;
+            else
+            zero.add(sum) ;
+        }
+        // For Column 
+        for(int j = 0 ;j<row;j++)
+        {
+            long sum =0 ;
+            boolean flag = true ;
+            for(int i= 0 ;i<col;i++)
+            {
+                sum+=matrix[i][j] ;
+                if(matrix[i][j]==0)
+                flag = false ;
+            }
+            if(flag)
+            nonZero.add(sum )  ;
+            else
+            zero.add(sum) ;
+        }
+        // For Diagonals
+        boolean flag = true ;
+        long sum =0 ;
+        for(int i = 0 ;i<row; i++)
+        {
+            sum+=matrix[i][ i] ;
+            if(matrix[i][i]==0)
+            flag = false ;
+        }
+       if(flag)
+            nonZero.add(sum )  ;
+            else
+            zero.add(sum) ;
+        // Diagonals 
+        flag = true;
+        sum =0 ;
+        for(int i =0 , j = col-1 ;j>=0;j--,i++)
+        {
+            sum+=matrix[i][j];
+            if(matrix[i][j]==0)
+            flag = false ;
+        }
+        if(flag)
+            nonZero.add(sum )  ;
+            else
+            zero.add(sum) ;
+        
+        if(nonZero.size()==1 && zero.size()==1)
+        {
+            long x = nonZero.first() ;
+            long y = zero.first() ;
+            if(x<=y)
+            return -1 ;
+            return x-y ;
+        }
+        return -1 ;
+    }
+}
