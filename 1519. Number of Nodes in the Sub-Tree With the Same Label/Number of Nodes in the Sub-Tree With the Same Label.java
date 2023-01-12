@@ -38,3 +38,7 @@ class Solution {
         return cnt ;
     }
 }
+
+
+Time Complexity -> O(n) 
+Space Complexity -> O(n)
