@@ -1,0 +1,24 @@
+class Solution{
+    static int [] endPoints(int [][]matrix, int R, int C){
+        int cur_i = 0 , cur_j = 0 , dir = 1 ;
+        int []dx = {-1,0,1,0} ;
+        int []dy = {0,1,0,-1} ;
+        int i = 0 ,j = 0 ;
+        while(i>=0 && i<R && j>=0 && j<C){
+            cur_i  = i ;
+            cur_j = j ;
+            if(matrix[i][j]==0){
+                i+=dx[dir] ;
+                j+=dy[dir] ;
+            }
+            else
+            {
+                dir= (dir+1)%4 ;
+                matrix[i][j]=0 ;
+                i+=dx[dir] ;
+                j+=dy[dir] ;
+            }
+        }
+        return new int[]{cur_i,cur_j} ;
+        }
+}
