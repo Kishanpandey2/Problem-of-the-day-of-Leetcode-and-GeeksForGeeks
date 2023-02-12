@@ -1,21 +1,19 @@
 class Solution
 {
-    boolean prime(int n){
-        if(n==1)return false ;
-        if(n==2 || n==3)return true ;
-        if(n%2==0 || n%3==0)
-        return false ;
-       for(int i = 5;i*i<=n;i=i+6)
-        {
-            if(n%i==0 || n%(i+2)==0)
-                return false;
-           
-        }
-        return true ;
-    }
+  
     Node primeList(Node head){
         Node cur = head ;
-      
+        int n = 100000 ;
+        boolean isprime[] = new boolean[n+1] ;
+        Arrays.fill(isprime,true);
+        for(int i = 2;i*i<=n;i++)
+        {
+            if(isprime[i])
+            {
+                for(int j = i*i;j<=n;j=j+i)
+                    isprime[j]=false ;
+            }
+        }
         while(cur!=null){
             if(cur.val==1){
                 cur.val = 2  ; cur = cur.next ; 
@@ -23,9 +21,9 @@ class Solution
             }
             int right = cur.val ;
             int left = cur.val ;
-            while(!prime(left))
+            while(!isprime[left])
             left-- ;
-             while(!prime(right))
+             while(!isprime[right])
             right++ ;
             
             if((cur.val-left)>(right-cur.val))
