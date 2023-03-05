@@ -43,7 +43,7 @@ class Solution {
                      }
                  }map.remove(arr[j]);
             }
-            
+             
         }
         return 0;
     }
