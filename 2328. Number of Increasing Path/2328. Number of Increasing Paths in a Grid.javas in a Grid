@@ -1,0 +1,33 @@
+class Solution {
+    int dp[][] ;
+  int mod = (int)(1e9+7);
+    public int countPaths(int[][] grid) {
+        int m = grid.length ;
+        int  n = grid[0].length ;
+        dp = new int[m][n];
+        for(int []i:dp)
+        Arrays.fill(i,-1);
+        int ans = 0; 
+        for(int i = 0 ;i<m;i++){
+            for(int j = 0 ;j<n;j++)
+            ans = (ans+dfs(grid,i,j,0))%mod;
+        }
+        return ans;
+    }
+    int dfs(int [][]grid, int i,int j ,int prev){
+        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length || grid[i][j]<=prev){
+            return 0;
+        }
+        
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        
+        int left = dfs(grid, i, j-1, grid[i][j]);
+        int right = dfs(grid, i, j+1, grid[i][j]);
+        int up = dfs(grid, i-1, j, grid[i][j]);
+        int down = dfs(grid, i+1, j, grid[i][j]);
+        
+        return dp[i][j] = (1+left+right+up+down)%mod;
+    }
+}
