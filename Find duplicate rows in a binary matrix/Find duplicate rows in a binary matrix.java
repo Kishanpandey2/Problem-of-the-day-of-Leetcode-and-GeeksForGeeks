@@ -3,21 +3,23 @@ class Solution
 {
     public static ArrayList<Integer> repeatedRows(int matrix[][], int m, int n)
     {
-       Set<Integer>st = new HashSet<>() ;
+       Set<String>st = new HashSet<>() ;
        
        ArrayList<Integer>ans = new ArrayList<>() ;
        
        
        for(int  r=0 ;r< matrix.length;r++)
        {
-          int deci = 0 ;
+          StringBuilder sb = new StringBuilder() ;
           for(int c = 0 ;c<matrix[0].length;c++)
-          deci += matrix[r][c]*Math.pow(2,c) ;
+         sb.append(matrix[r][c]) ;
+         
+         String temp = sb.toString();
           
-          if(st.contains(deci))
+          if(st.contains(temp))
           ans.add(r);
           else
-          st.add(deci);
+          st.add(temp);
            
        }
        
