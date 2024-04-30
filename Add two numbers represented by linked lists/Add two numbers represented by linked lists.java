@@ -1,4 +1,6 @@
 
+/* node for linked list
+
 class Node {
     int data;
     Node next;
@@ -58,8 +60,10 @@ class Solution{
            }
        }
       
+      while( ans!= null && ans.data == 0)
+      ans = ans.next;
       
-       return ans;
+       return ans== null ?new Node(0):ans;
        
     }
     
